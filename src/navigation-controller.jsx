@@ -380,8 +380,8 @@ class NavigationController extends React.Component {
     };
     options = assign({}, defaults, options);
     checkOptions('popView', options);
-    if (this.state.views.length === 1) {
-      throw new Error('popView() can only be called with two or more views in the stack');
+    if (this.state.views.length <= 1) {
+      return;
     }
     if (this.__isTransitioning) return;
     const {transition} = options;
