@@ -22053,9 +22053,9 @@
 	      };
 	      options = (0, _object.assign)({}, defaults, options);
 	      checkOptions('popView', options);
-	      if (this.state.views.length === 1) {
-	        throw new Error('popView() can only be called with two or more views in the stack');
-	      }
+		  if (this.state.views.length <= 1) {
+			return;
+		  }
 	      if (this.__isTransitioning) return;
 	      var _options3 = options,
 	          transition = _options3.transition;
