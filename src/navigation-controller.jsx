@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import rebound from 'rebound';
 import classNames from 'classnames';
 
-import {dropRight, last, takeRight} from './util/array';
-import {assign} from './util/object';
+import { dropRight, last, takeRight } from './util/array';
+import { assign } from './util/object';
 
 import * as Transition from './util/transition';
 
-const {SpringSystem, SpringConfig, OrigamiValueConverter} = rebound;
+const { SpringSystem, SpringConfig, OrigamiValueConverter } = rebound;
 
-const {mapValueInRange} = rebound.MathUtil;
+const { mapValueInRange } = rebound.MathUtil;
 
 const isNumber = value => typeof value === 'number';
 const isFunction = value => typeof value === 'function';
@@ -72,7 +72,7 @@ function checkOptions(method, options) {
 class NavigationController extends React.Component {
   constructor(props) {
     super(props);
-    const {views, preserveState} = this.props;
+    const { views, preserveState } = this.props;
     this.state = {
       views: dropRight(views),
       preserveState,
@@ -248,7 +248,7 @@ class NavigationController extends React.Component {
       transitionFriction: this.props.transitionFriction,
     };
     options = assign({}, defaults, options);
-    const {transition, transitionTension, transitionFriction} = options;
+    const { transition, transitionTension, transitionFriction } = options;
 
     // Create a function that will be called once the
     this.__transitionViewsComplete = () => {
@@ -331,10 +331,10 @@ class NavigationController extends React.Component {
     const defaults = {
       transition: Transition.type.PUSH_LEFT,
     };
-    options = assign({}, defaults, options, {view});
+    options = assign({}, defaults, options, { view });
     checkOptions('pushView', options);
     if (this.__isTransitioning) return;
-    const {transition} = options;
+    const { transition } = options;
     const [prev, next] = this.__viewIndexes;
     let views = this.state.views.slice();
     // Alternate mounted views order
@@ -384,7 +384,7 @@ class NavigationController extends React.Component {
       return;
     }
     if (this.__isTransitioning) return;
-    const {transition} = options;
+    const { transition } = options;
     const [prev, next] = this.__viewIndexes;
     const views = dropRight(this.state.views);
     // Alternate mounted views order
@@ -431,7 +431,7 @@ class NavigationController extends React.Component {
   __setViews(views, options) {
     options = typeof options === 'object' ? options : {};
     checkOptions('setViews', options);
-    const {onComplete, preserveState} = options;
+    const { onComplete, preserveState } = options;
     options = assign({}, options, {
       onComplete: () => {
         this.__viewStates.length = 0;
@@ -459,10 +459,10 @@ class NavigationController extends React.Component {
     options = assign({}, defaults, options);
     checkOptions('popToRootView', options);
     if (this.state.views.length === 1) {
-      throw new Error('popToRootView() can only be called with two or more views in the stack');
+      return;
     }
     if (this.__isTransitioning) return;
-    const {transition} = options;
+    const { transition } = options;
     const [prev, next] = this.__viewIndexes;
     const rootView = this.state.views[0];
     const topView = last(this.state.views);
