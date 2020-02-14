@@ -579,7 +579,7 @@ var NavigationController = function (_React$Component) {
       options = (0, _object.assign)({}, defaults, options);
       checkOptions('popToRootView', options);
       if (this.state.views.length === 1) {
-        throw new Error('popToRootView() can only be called with two or more views in the stack');
+        return;
       }
       if (this.__isTransitioning) return;
       var _options5 = options,
